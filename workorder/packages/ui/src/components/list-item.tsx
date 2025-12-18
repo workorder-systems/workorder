@@ -33,7 +33,7 @@ function ListItem({
       {...itemProps}
     >
       {leading ? (
-        <ItemMedia className="shrink-0">
+        <ItemMedia className="shrink-0 w-9 justify-center">
           {leading}
         </ItemMedia>
       ) : null}
