@@ -19,6 +19,8 @@ const badgeVariants = cva(
           "text-foreground [a&]:hover:bg-accent [a&]:hover:text-accent-foreground",
         subtle:
           "border-transparent bg-muted text-muted-foreground [a&]:hover:bg-muted/80",
+        soft:
+          "border-transparent bg-muted text-muted-foreground [a&]:hover:bg-muted/80",
       },
       size: {
         xs: "px-1.5 py-0 text-[0.68rem]",
@@ -26,18 +28,73 @@ const badgeVariants = cva(
         md: "px-2.5 py-0.5 text-[0.8rem]",
       },
       tone: {
-        neutral:
-          "bg-status-neutral-bg text-muted-foreground border-status-neutral-border",
-        info:
-          "bg-status-info-bg text-status-info border-status-info-border",
-        success:
-          "bg-status-success-bg text-status-success border-status-success-border",
-        warning:
-          "bg-status-warning-bg text-status-warning border-status-warning-border",
-        destructive:
-          "bg-destructive/10 text-destructive border-destructive/30 dark:bg-destructive/20",
+        neutral: "",
+        info: "",
+        success: "",
+        warning: "",
+        destructive: "",
       },
     },
+    compoundVariants: [
+      // soft + tone → soft status chips
+      {
+        variant: "soft",
+        tone: "neutral",
+        className:
+          "bg-status-neutral-bg text-muted-foreground border-status-neutral-border",
+      },
+      {
+        variant: "soft",
+        tone: "info",
+        className:
+          "bg-status-info-bg text-status-info border-status-info-border",
+      },
+      {
+        variant: "soft",
+        tone: "success",
+        className:
+          "bg-status-success-bg text-status-success border-status-success-border",
+      },
+      {
+        variant: "soft",
+        tone: "warning",
+        className:
+          "bg-status-warning-bg text-status-warning border-status-warning-border",
+      },
+      {
+        variant: "soft",
+        tone: "destructive",
+        className:
+          "bg-destructive/10 text-destructive border-destructive/30 dark:bg-destructive/20",
+      },
+
+      // outline + tone → tinted outline chips
+      {
+        variant: "outline",
+        tone: "neutral",
+        className: "text-muted-foreground border-status-neutral-border",
+      },
+      {
+        variant: "outline",
+        tone: "info",
+        className: "text-status-info border-status-info-border",
+      },
+      {
+        variant: "outline",
+        tone: "success",
+        className: "text-status-success border-status-success-border",
+      },
+      {
+        variant: "outline",
+        tone: "warning",
+        className: "text-status-warning border-status-warning-border",
+      },
+      {
+        variant: "outline",
+        tone: "destructive",
+        className: "text-destructive border-destructive/60",
+      },
+    ],
     defaultVariants: {
       variant: "default",
       size: "sm",
