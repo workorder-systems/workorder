@@ -90,8 +90,8 @@ const directionClasses: Record<Direction, string> = {
 }
 
 const gradientClasses: Record<Direction, string> = {
-  up: "bg-gradient-to-t from-emerald-50/40 via-emerald-50/10 to-card dark:from-emerald-500/5",
-  down: "bg-gradient-to-t from-red-50/40 via-red-50/10 to-card dark:from-red-500/5",
+  up: "bg-gradient-to-t from-emerald-500/10 via-emerald-500/5 to-card dark:from-emerald-500/5",
+  down: "bg-gradient-to-t from-destructive/10 via-destructive/5 to-card dark:from-destructive/10",
   neutral: "bg-gradient-to-t from-muted to-card",
 }
 

@@ -114,7 +114,7 @@ export const WithButtonAndChart: Story = {
         meta="Focus on safety‑critical assets"
         trend={{
           value: "+5",
-          direction: "up",
+          direction: "down",
           icon: ArrowUpRight,
           srLabel: "5 more preventive maintenance jobs are overdue this week",
         }}
