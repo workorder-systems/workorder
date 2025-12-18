@@ -84,9 +84,15 @@ export interface StatCardProps extends React.ComponentProps<typeof Card> {
 }
 
 const directionClasses: Record<Direction, string> = {
-  up: "text-primary",
-  down: "text-destructive",
-  neutral: "text-muted-foreground",
+  up: "bg-emerald-50 text-emerald-700 border-transparent dark:bg-emerald-500/10 dark:text-emerald-300",
+  down: "bg-red-50 text-red-700 border-transparent dark:bg-red-500/10 dark:text-red-300",
+  neutral: "bg-muted text-muted-foreground border-transparent",
+}
+
+const gradientClasses: Record<Direction, string> = {
+  up: "bg-gradient-to-t from-emerald-50/40 via-emerald-50/10 to-card dark:from-emerald-500/5",
+  down: "bg-gradient-to-t from-red-50/40 via-red-50/10 to-card dark:from-red-500/5",
+  neutral: "bg-gradient-to-t from-muted to-card",
 }
 
 function StatCard({
@@ -110,7 +116,11 @@ function StatCard({
 
   return (
     <Card
-      className={cn("@container/stat-card h-full", className)}
+      className={cn(
+        "@container/stat-card h-full",
+        gradientClasses[direction],
+        className
+      )}
       {...props}
     >
       <CardHeader className="space-y-3">

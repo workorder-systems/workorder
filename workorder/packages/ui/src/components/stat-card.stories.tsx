@@ -24,7 +24,6 @@ export const Base: Story = {
     subtitle: "Across all assets",
     value: "128",
     meta: "vs yesterday",
-    className: "bg-gradient-to-t from-primary/5 to-card shadow-xs",
   },
 }
 
@@ -42,7 +41,6 @@ export const WithTrend: Story = {
       icon: ArrowUpRight,
       srLabel: "18 more work orders opened today",
     },
-    className: "bg-gradient-to-t from-primary/5 to-card shadow-xs",
   },
 }
 
@@ -71,7 +69,6 @@ export const WithButtonAndChart: Story = {
         trailing={
           <div className="h-full w-full rounded-xl bg-gradient-to-tr from-primary/10 to-primary/40" />
         }
-        className="bg-gradient-to-t from-primary/5 to-card shadow-xs"
       />
 
       <StatCard
@@ -94,7 +91,6 @@ export const WithButtonAndChart: Story = {
         trailing={
           <div className="h-full w-full rounded-xl bg-gradient-to-tr from-primary/10 to-primary/40" />
         }
-        className="bg-gradient-to-t from-primary/5 to-card shadow-xs"
       />
     </div>
   ),
@@ -113,7 +109,6 @@ export const WithLogo: Story = {
         MS
       </div>
     ),
-    className: "bg-gradient-to-t from-primary/5 to-card shadow-xs",
   },
 }
 
@@ -144,7 +139,6 @@ export const WithFooter: Story = {
             <ArrowRight className="size-4" />
           </Button>
         }
-        className="bg-gradient-to-t from-primary/5 to-card shadow-xs"
       />
 
       <StatCard
@@ -163,7 +157,6 @@ export const WithFooter: Story = {
             <ArrowRight className="size-4" />
           </Button>
         }
-        className="bg-gradient-to-t from-primary/5 to-card shadow-xs"
       />
     </div>
   ),
