@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import { ArrowRight, ArrowUpRight } from "lucide-react"
+import { Area, AreaChart, ResponsiveContainer } from "recharts"
 
 import { Button } from "@workspace/ui/components/button"
 import { StatCard } from "./stat-card.js"
@@ -15,6 +16,24 @@ const meta = {
 export default meta
 
 type Story = StoryObj<typeof meta>
+
+const sampleData = [
+  { x: 0, y: 4 },
+  { x: 1, y: 6 },
+  { x: 2, y: 5 },
+  { x: 3, y: 7 },
+  { x: 4, y: 9 },
+  { x: 5, y: 8 },
+]
+
+const sampleNegativeData = [
+  { x: 0, y: 9 },
+  { x: 1, y: 7 },
+  { x: 2, y: 6 },
+  { x: 3, y: 5 },
+  { x: 4, y: 4 },
+  { x: 5, y: 3 },
+]
 
 // Canonical, minimal stat tile: label + value (+ optional meta)
 export const Base: Story = {
@@ -67,7 +86,23 @@ export const WithButtonAndChart: Story = {
           </Button>
         }
         trailing={
-          <div className="h-full w-full rounded-xl bg-gradient-to-tr from-primary/10 to-primary/40" />
+          <ResponsiveContainer width="100%" height="100%">
+            <AreaChart data={sampleData}>
+              <defs>
+                <linearGradient id="stat-positive" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="hsl(142 70% 45%)" stopOpacity={0.3} />
+                  <stop offset="100%" stopColor="hsl(142 70% 45%)" stopOpacity={0} />
+                </linearGradient>
+              </defs>
+              <Area
+                type="monotone"
+                dataKey="y"
+                stroke="hsl(142 70% 45%)"
+                strokeWidth={2}
+                fill="url(#stat-positive)"
+              />
+            </AreaChart>
+          </ResponsiveContainer>
         }
       />
 
@@ -89,7 +124,23 @@ export const WithButtonAndChart: Story = {
           </Button>
         }
         trailing={
-          <div className="h-full w-full rounded-xl bg-gradient-to-tr from-primary/10 to-primary/40" />
+          <ResponsiveContainer width="100%" height="100%">
+            <AreaChart data={sampleNegativeData}>
+              <defs>
+                <linearGradient id="stat-negative" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="hsl(0 72% 51%)" stopOpacity={0.3} />
+                  <stop offset="100%" stopColor="hsl(0 72% 51%)" stopOpacity={0} />
+                </linearGradient>
+              </defs>
+              <Area
+                type="monotone"
+                dataKey="y"
+                stroke="hsl(0 72% 51%)"
+                strokeWidth={2}
+                fill="url(#stat-negative)"
+              />
+            </AreaChart>
+          </ResponsiveContainer>
         }
       />
     </div>
