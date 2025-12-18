@@ -1,5 +1,6 @@
 import * as React from "react"
 import type { Meta, StoryObj } from "@storybook/react"
+import { Camera, FileText, RotateCcw, Save, Play } from "lucide-react"
 
 import { Button } from "@workspace/ui/components/button"
 import { Input } from "@workspace/ui/components/input"
@@ -11,6 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@workspace/ui/components/select"
+import { StickyActionBar } from "./sticky-action-bar.js"
 import { ResponsiveSheet } from "./responsive-sheet.js"
 
 const meta = {
@@ -42,36 +44,80 @@ function DetailsPanelStory() {
         open={open}
         onOpenChange={setOpen}
         title="Werkorder details"
-        description="Scroll door de inhoud om te zien dat de header en footer op hun plaats blijven."
+        description="Realistisch overzicht van een storing met een sticky actie-balk onderin."
         footer={
-          <div className="flex items-center justify-end gap-2">
-            <Button
-              variant="outline"
-              onClick={() => setOpen(false)}
-            >
-              Sluiten
-            </Button>
-            <Button onClick={() => setOpen(false)}>Actie uitvoeren</Button>
-          </div>
+          <StickyActionBar
+            primaryAction={{
+              label: (
+                <span className="inline-flex items-center gap-1">
+                  <Play className="size-4" />
+                  <span>Start</span>
+                </span>
+              ),
+              onClick: () => {},
+            }}
+            secondaryActions={[
+              {
+                label: (
+                  <span className="inline-flex items-center gap-1">
+                    <Camera className="size-4" />
+                    <span>Foto</span>
+                  </span>
+                ),
+                onClick: () => {},
+                variant: "secondary",
+              },
+              {
+                label: (
+                  <span className="inline-flex items-center gap-1">
+                    <FileText className="size-4" />
+                    <span>Note</span>
+                  </span>
+                ),
+                onClick: () => {},
+              },
+            ]}
+          />
         }
       >
-        <div className="space-y-4 text-sm text-muted-foreground">
-          <div>
+        <div className="space-y-6 text-sm text-muted-foreground">
+          <section className="space-y-1">
             <p className="font-medium text-foreground">
               Airco lekt water – Kamer 204
             </p>
             <p>HVAC · Zojuist gemeld · gast aanwezig</p>
-          </div>
+          </section>
 
-          <div className="space-y-2">
-            {Array.from({ length: 10 }).map((_, index) => (
-              <p key={index}>
-                Dit is regel {index + 1} van een langere beschrijving. Scroll
-                naar beneden om te zien dat de kop en acties onderin
-                vastblijven staan terwijl alleen de inhoud scrolt.
-              </p>
+          <section className="space-y-1">
+            <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+              Omschrijving
+            </p>
+            <p>
+              Gast meldt druppels op de vloer onder de airco-unit. Lekkage lijkt
+              toe te nemen wanneer de koeling aanslaat. Controleer condensafvoer,
+              filter en behuizing.
+            </p>
+          </section>
+
+          <section className="space-y-1">
+            <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+              Context
+            </p>
+            <ul className="list-disc space-y-1 pl-4">
+              <li>Gast blijft in de kamer wachten op update.</li>
+              <li>Receptie is geïnformeerd en verwacht terugkoppeling.</li>
+              <li>Voorkom schade aan vloer en meubilair.</li>
+            </ul>
+          </section>
+
+          <section className="space-y-1">
+            <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+              Log
+            </p>
+            {Array.from({ length: 6 }).map((_, index) => (
+              <p key={index}>Logregel {index + 1} – voorbeeldtekst.</p>
             ))}
-          </div>
+          </section>
         </div>
       </ResponsiveSheet>
     </div>
@@ -89,17 +135,31 @@ function FormPanelStory() {
         open={open}
         onOpenChange={setOpen}
         title="Werkorder bijwerken"
-        description="Gebruik dit paneel voor formulieren met een sticky footer voor acties."
+        description="Typisch formulier met een sticky actie-balk voor acties onderin."
         footer={
-          <div className="flex items-center justify-end gap-2">
-            <Button
-              variant="outline"
-              onClick={() => setOpen(false)}
-            >
-              Annuleren
-            </Button>
-            <Button onClick={() => setOpen(false)}>Opslaan</Button>
-          </div>
+          <StickyActionBar
+            primaryAction={{
+              label: (
+                <span className="inline-flex items-center gap-1">
+                  <Save className="size-4" />
+                  <span>Opslaan</span>
+                </span>
+              ),
+              onClick: () => {},
+            }}
+            secondaryActions={[
+              {
+                label: (
+                  <span className="inline-flex items-center gap-1">
+                    <RotateCcw className="size-4" />
+                    <span>Reset</span>
+                  </span>
+                ),
+                onClick: () => {},
+                variant: "secondary",
+              },
+            ]}
+          />
         }
       >
         <form className="space-y-4">

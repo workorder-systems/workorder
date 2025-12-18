@@ -109,11 +109,7 @@ function ResponsiveSheet({
             {children}
           </div>
 
-          {footer ? (
-            <div className="border-t bg-background px-4 py-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))]">
-              {footer}
-            </div>
-          ) : null}
+          {footer ?? null}
         </DrawerContent>
       </Drawer>
     )
@@ -147,11 +143,7 @@ function ResponsiveSheet({
           {children}
         </div>
 
-        {footer ? (
-          <div className="border-t bg-background px-4 py-3">
-            {footer}
-          </div>
-        ) : null}
+        {footer ?? null}
       </SheetContent>
     </Sheet>
   )
