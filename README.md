@@ -1,37 +1,31 @@
-# WorkOrder
+# shadcn/ui monorepo template
 
-Open-source maintenance software for teams that manage real assets.
+This template is for creating a monorepo with shadcn/ui.
 
-**Works offline. You own your data. Built for daily maintenance work.**
+## Usage
 
-## What WorkOrder is
+```bash
+pnpm dlx shadcn@latest init
+```
 
-WorkOrder is open-source maintenance software that focuses on the basics done well:
+## Adding components
 
-* Clear work orders
-* Understandable asset structure and history
-* Software that keeps working when connectivity is unreliable
+To add components to your app, run the following command at the root of your `web` app:
 
-WorkOrder is designed to be:
-* **Offline-first** — work continues without internet
-* **Data-owned** — you stay in control of your data
-* **Open** — transparent, inspectable, and adaptable
-* **Practical** — built for daily maintenance work
+```bash
+pnpm dlx shadcn@latest add button -c apps/web
+```
 
-See [Vision](docs/vision.md) for more about what WorkOrder is and why it exists.
+This will place the ui components in the `packages/ui/src/components` directory.
 
-## Status
+## Tailwind
 
-WorkOrder is in early development. Contributions and feedback are welcome.
+Your `tailwind.config.ts` and `globals.css` are already set up to use the components from the `ui` package.
 
-## Contributing
+## Using components
 
-We welcome contributions that make maintenance clearer or more reliable.
+To use the components in your app, import them from the `ui` package.
 
-* Read our [Contributing Guide](CONTRIBUTING.md) to get started
-* Review our [Code of Conduct](CODE_OF_CONDUCT.md) before participating
-* Check out our [Vision](docs/vision.md) to understand project goals
-
-## License
-
-WorkOrder is licensed under the [GNU Affero General Public License v3.0](LICENSE).
+```tsx
+import { Button } from "@workspace/ui/components/button"
+```

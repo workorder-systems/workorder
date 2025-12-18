@@ -1,9 +1,0 @@
-blank_issues_enabled: false
-contact_links:
-  - name: Question or Discussion
-    url: https://github.com/workorder-systems/workorder/discussions
-    about: Ask questions or start a discussion about WorkOrder
-  - name: Security Issue
-    url: https://github.com/workorder-systems/workorder/security/advisories/new
-    about: Report a security vulnerability (see SECURITY.md)
-
