@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { ChevronRight, ClipboardList, ShieldAlert } from "lucide-react"
+import { ChevronRight, ClipboardList, ShieldAlert, Paperclip } from "lucide-react"
 
 import { Avatar, AvatarFallback } from "@workspace/ui/components/avatar"
 import {
@@ -28,15 +28,17 @@ export const WorkOrderUrgent: Story = {
   render: () => (
     <div className="max-w-md space-y-2">
       <ListItem
-        title="Storing airco – waterlekkage"
+        title={
+          <span className="flex min-w-0 items-center gap-2">
+            <span
+              aria-hidden="true"
+              className="inline-flex h-2.5 w-2.5 shrink-0 rounded-full bg-destructive"
+            />
+            <span className="truncate">Storing airco – waterlekkage</span>
+          </span>
+        }
         description="Kamer 204 · Vleugel B"
         meta="Zojuist gemeld · escalatie"
-        leading={
-          <span
-            aria-hidden="true"
-            className="mt-1 inline-flex h-2.5 w-2.5 rounded-full bg-destructive"
-          />
-        }
         trailing={
           <ChevronRight
             aria-hidden="true"
@@ -102,6 +104,73 @@ export const Notification: Story = {
   ),
 }
 
+export const WorkOrderWithAttachment: Story = {
+  name: "Work order – with attachment",
+  args: {
+    title: "Upload inspectierapport",
+  },
+  render: () => (
+    <div className="max-w-md space-y-2">
+      <ListItem
+        title={
+          <span className="flex min-w-0 items-center gap-2">
+            <span
+              aria-hidden="true"
+              className="inline-flex h-2.5 w-2.5 shrink-0 rounded-full bg-muted"
+            />
+            <span className="truncate">Upload inspectierapport</span>
+          </span>
+        }
+        description="Kamer 204 · HVAC"
+        meta="Vandaag · 11:15 · 1 bijlage"
+        trailing={
+          <div className="flex items-center gap-2 text-muted-foreground">
+            <Paperclip
+              aria-hidden="true"
+              className="h-4 w-4"
+            />
+            <ChevronRight
+              aria-hidden="true"
+              className="h-4 w-4"
+            />
+          </div>
+        }
+      />
+    </div>
+  ),
+}
+
+export const WorkOrderWithPhotoPreview: Story = {
+  name: "Work order – with photo preview",
+  args: {
+    title: "Airco unit beschadigd",
+  },
+  render: () => (
+    <div className="max-w-md space-y-2">
+      <ListItem
+        title="Airco unit beschadigd"
+        description="Dak · Unit 3A"
+        meta="Vandaag · 10:20 · 2 foto's toegevoegd"
+        leading={
+          <div className="h-full w-full overflow-hidden rounded-sm">
+            <img
+              src="https://images.pexels.com/photos/3964348/pexels-photo-3964348.jpeg?auto=compress&cs=tinysrgb&w=160"
+              alt="Voorbeeldfoto van de storing"
+              className="h-full w-full object-cover"
+            />
+          </div>
+        }
+        trailing={
+          <ChevronRight
+            aria-hidden="true"
+            className="h-4 w-4 text-muted-foreground"
+          />
+        }
+      />
+    </div>
+  ),
+}
+
 export const TechnicianStartOfShift: Story = {
   name: "Technician home – start of shift",
   args: {
@@ -116,15 +185,17 @@ export const TechnicianStartOfShift: Story = {
         <ItemGroup className="rounded-md border bg-background">
           <ListItem
             size="sm"
-            title="Airco lekt water"
+            title={
+              <span className="flex min-w-0 items-center gap-2">
+                <span
+                  aria-hidden="true"
+                  className="inline-flex h-2.5 w-2.5 shrink-0 rounded-full bg-destructive"
+                />
+                <span className="truncate">Airco lekt water</span>
+              </span>
+            }
             description="Kamer 204 · HVAC"
             meta="Zojuist gemeld · gast aanwezig"
-            leading={
-              <span
-                aria-hidden="true"
-                className="mt-1 inline-flex h-2.5 w-2.5 rounded-full bg-destructive"
-              />
-            }
             trailing={
               <ChevronRight
                 aria-hidden="true"
@@ -135,15 +206,17 @@ export const TechnicianStartOfShift: Story = {
           <ItemSeparator />
           <ListItem
             size="sm"
-            title="Storing koeling"
+            title={
+              <span className="flex min-w-0 items-center gap-2">
+                <span
+                  aria-hidden="true"
+                  className="inline-flex h-2.5 w-2.5 shrink-0 rounded-full bg-destructive"
+                />
+                <span className="truncate">Storing koeling</span>
+              </span>
+            }
             description="Keuken · Koelcel"
             meta="10 min open · productie stil"
-            leading={
-              <span
-                aria-hidden="true"
-                className="mt-1 inline-flex h-2.5 w-2.5 rounded-full bg-destructive"
-              />
-            }
             trailing={
               <ChevronRight
                 aria-hidden="true"
@@ -253,15 +326,19 @@ export const QueueSortedByUrgency: Story = {
       <ItemGroup className="rounded-md border bg-background">
         <ListItem
           size="sm"
-          title="Storing koeling – temperatuur te hoog"
+          title={
+            <span className="flex min-w-0 items-center gap-2">
+              <span
+                aria-hidden="true"
+                className="inline-flex h-2.5 w-2.5 shrink-0 rounded-full bg-destructive"
+              />
+              <span className="truncate">
+                Storing koeling – temperatuur te hoog
+              </span>
+            </span>
+          }
           description="Productiekeuken · Koelcel 1"
           meta="Nu · 5 min open · productie stil"
-          leading={
-            <span
-              aria-hidden="true"
-              className="mt-1 inline-flex h-2.5 w-2.5 rounded-full bg-destructive"
-            />
-          }
           trailing={
             <ChevronRight
               aria-hidden="true"
@@ -272,15 +349,19 @@ export const QueueSortedByUrgency: Story = {
         <ItemSeparator />
         <ListItem
           size="sm"
-          title="Lift storing – blijft tussen verdiepingen hangen"
+          title={
+            <span className="flex min-w-0 items-center gap-2">
+              <span
+                aria-hidden="true"
+                className="inline-flex h-2.5 w-2.5 shrink-0 rounded-full bg-destructive"
+              />
+              <span className="truncate">
+                Lift storing – blijft tussen verdiepingen hangen
+              </span>
+            </span>
+          }
           description="Hoofdingang · Lift A"
           meta="Nu · 15 min open · gasten wachten"
-          leading={
-            <span
-              aria-hidden="true"
-              className="mt-1 inline-flex h-2.5 w-2.5 rounded-full bg-destructive"
-            />
-          }
           trailing={
             <ChevronRight
               aria-hidden="true"
@@ -330,12 +411,6 @@ export const QueueSortedByUrgency: Story = {
           title="Visuele controle buitenverlichting"
           description="Parkeerterrein en toegangsweg"
           meta="Vandaag · wanneer tijd"
-          leading={
-            <span
-              aria-hidden="true"
-              className="mt-1 inline-flex h-2.5 w-2.5 rounded-full bg-muted"
-            />
-          }
           trailing={
             <ChevronRight
               aria-hidden="true"
