@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { ArrowDownRight, ArrowUpRight } from "lucide-react"
+import { ArrowRight, ArrowUpRight } from "lucide-react"
 
+import { Button } from "@workspace/ui/components/button"
 import { StatCard } from "./stat-card.js"
 
 const meta = {
@@ -15,98 +16,153 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
-export const Single: Story = {
-  name: "Single metric",
+// Canonical, minimal stat tile: label + value (+ optional meta)
+export const Base: Story = {
+  name: "Base",
   args: {
     label: "Open work orders",
+    subtitle: "Across all assets",
     value: "128",
+    meta: "vs yesterday",
+    className: "bg-gradient-to-t from-primary/5 to-card shadow-xs",
+  },
+}
+
+// Same shell, adds a trend badge (numeric change only)
+export const WithTrend: Story = {
+  name: "With trend",
+  args: {
+    label: "Open work orders",
+    subtitle: "Across all assets",
+    value: "128",
+    meta: "vs yesterday",
     trend: {
-      value: "+18 today",
+      value: "+18", // numeric only
       direction: "up",
       icon: ArrowUpRight,
       srLabel: "18 more work orders opened today",
     },
-    helper: {
-      title: "Peak around morning shift",
-      description: "Most new work reported between 07:00 and 10:00",
-      icon: ArrowUpRight,
-    },
+    className: "bg-gradient-to-t from-primary/5 to-card shadow-xs",
   },
 }
 
-export const Grid: Story = {
-  name: "Grid examples",
+// Same shell, shows headerAction (button) and trailing (chart area)
+export const WithButtonAndChart: Story = {
+  name: "With button and chart",
   render: (args) => (
-    <div className="grid w-full grid-cols-1 gap-4 px-4 lg:px-6 sm:grid-cols-2 xl:grid-cols-4">
+    <div className="grid w-full grid-cols-1 gap-4 px-4 lg:px-6 sm:grid-cols-2">
       <StatCard
         {...args}
-        label="Open work orders"
-        value="128"
+        label="Productive Time"
+        subtitle="/ Day"
+        value="12.4 hr"
+        meta="Compared to last week"
         trend={{
-          value: "+18 today",
+          value: "+23",
           direction: "up",
           icon: ArrowUpRight,
-          srLabel: "18 more work orders opened today",
+          srLabel: "23% increase compared to last week",
         }}
-        helper={{
-          title: "Most on line A and packaging",
-          description: "Plan assignments to avoid bottlenecks",
-          icon: ArrowUpRight,
-        }}
+        headerAction={
+          <Button variant="outline" size="icon-sm">
+            <ArrowUpRight className="size-4" />
+          </Button>
+        }
+        trailing={
+          <div className="h-full w-full rounded-xl bg-gradient-to-tr from-primary/10 to-primary/40" />
+        }
         className="bg-gradient-to-t from-primary/5 to-card shadow-xs"
       />
 
       <StatCard
         {...args}
         label="Overdue PMs"
+        subtitle="Past due date"
         value="23"
+        meta="Focus on safety‑critical assets"
         trend={{
-          value: "+5 this week",
+          value: "+5",
           direction: "up",
           icon: ArrowUpRight,
           srLabel: "5 more preventive maintenance jobs are overdue this week",
         }}
-        helper={{
-          title: "Catch up before next shutdown",
-          description: "Focus on safety‑critical PMs first",
-          icon: ArrowUpRight,
-        }}
-        className="bg-gradient-to-t from-destructive/5 to-card shadow-xs"
+        headerAction={
+          <Button variant="outline" size="icon-sm">
+            <ArrowUpRight className="size-4" />
+          </Button>
+        }
+        trailing={
+          <div className="h-full w-full rounded-xl bg-gradient-to-tr from-primary/10 to-primary/40" />
+        }
+        className="bg-gradient-to-t from-primary/5 to-card shadow-xs"
       />
+    </div>
+  ),
+}
 
+// Shows a logo/leading icon while keeping the same layout
+export const WithLogo: Story = {
+  name: "With logo",
+  args: {
+    label: "Mail server",
+    subtitle: "Email notifications",
+    value: "99.9%",
+    meta: "Uptime last 30 days",
+    leading: (
+      <div className="flex size-9 items-center justify-center rounded-full bg-primary/10 text-primary">
+        MS
+      </div>
+    ),
+    className: "bg-gradient-to-t from-primary/5 to-card shadow-xs",
+  },
+}
+
+// Shows footer content (left/right) for secondary info and actions
+export const WithFooter: Story = {
+  name: "With footer",
+  render: (args) => (
+    <div className="grid w-full grid-cols-1 gap-4 px-4 lg:px-6 sm:grid-cols-2">
       <StatCard
         {...args}
-        label="Asset uptime (last 30 days)"
-        value="98.4%"
+        label="Average response time"
+        subtitle="Breakdown work orders"
+        value="32 min"
+        meta="vs last week"
         trend={{
-          value: "+1.2pp",
+          value: "-6",
           direction: "up",
           icon: ArrowUpRight,
-          srLabel: "Uptime improved by 1.2 percentage points",
+          srLabel: "Average response time decreased by 6 minutes",
         }}
-        helper={{
-          title: "Above target",
-          description: "Critical assets stayed online during production peaks",
-          icon: ArrowUpRight,
-        }}
+        footerLeft={
+          <span className="text-xs text-muted-foreground">
+            Teams start work faster after new work orders arrive.
+          </span>
+        }
+        footerRight={
+          <Button variant="outline" size="icon-sm">
+            <ArrowRight className="size-4" />
+          </Button>
+        }
         className="bg-gradient-to-t from-primary/5 to-card shadow-xs"
       />
 
       <StatCard
         {...args}
-        label="Average response time"
-        value="32 min"
-        trend={{
-          value: "-6 min",
-          direction: "down",
-          icon: ArrowDownRight,
-          srLabel: "Average response time decreased by 6 minutes",
-        }}
-        helper={{
-          title: "Faster reactions to breakdowns",
-          description: "Teams acknowledge and start work orders more quickly",
-          icon: ArrowDownRight,
-        }}
+        label="Overdue PMs"
+        subtitle="Past due date"
+        value="23"
+        meta="Scheduled for next shift"
+        footerLeft={
+          <span className="text-xs text-muted-foreground">
+            Group PMs into a route to catch up during low load.
+          </span>
+        }
+        footerRight={
+          <Button variant="outline" size="icon-sm">
+            <ArrowRight className="size-4" />
+          </Button>
+        }
         className="bg-gradient-to-t from-primary/5 to-card shadow-xs"
       />
     </div>

@@ -4,7 +4,6 @@ import { cn } from "@workspace/ui/lib/utils"
 import { Badge } from "@workspace/ui/components/badge"
 import {
   Card,
-  CardAction,
   CardDescription,
   CardFooter,
   CardHeader,
@@ -39,11 +38,16 @@ export interface StatCardProps extends React.ComponentProps<typeof Card> {
    * Short label describing what the metric represents,
    * e.g. "Total revenue" or "Open work orders".
    */
-  label: React.ReactNode
+  label?: React.ReactNode
+  /**
+   * Optional secondary label shown under the main label.
+   * Useful for units, time ranges, or short context.
+   */
+  subtitle?: React.ReactNode
   /**
    * The primary value to display, e.g. "1,250" or "4.5%".
    */
-  value: React.ReactNode
+  value?: React.ReactNode
   /**
    * Optional trend information shown in the top-right badge.
    */
@@ -52,6 +56,31 @@ export interface StatCardProps extends React.ComponentProps<typeof Card> {
    * Optional helper text shown in the footer.
    */
   helper?: StatCardHelper
+  /**
+   * Optional leading visual in the header (icon, avatar, logo).
+   */
+  leading?: React.ReactNode
+  /**
+   * Optional additional meta text under the value.
+   */
+  meta?: React.ReactNode
+  /**
+   * Optional trailing visual in the header (sparkline, mini chart, etc.).
+   */
+  trailing?: React.ReactNode
+  /**
+   * Optional action in the top-right of the header (e.g. button or icon).
+   */
+  headerAction?: React.ReactNode
+  /**
+   * Optional custom footer content on the left side.
+   * If provided, this takes precedence over `helper`.
+   */
+  footerLeft?: React.ReactNode
+  /**
+   * Optional custom footer content on the right side.
+   */
+  footerRight?: React.ReactNode
 }
 
 const directionClasses: Record<Direction, string> = {
@@ -62,9 +91,16 @@ const directionClasses: Record<Direction, string> = {
 
 function StatCard({
   label,
+  subtitle,
   value,
   trend,
   helper,
+  leading,
+  meta,
+  trailing,
+  headerAction,
+  footerLeft,
+  footerRight,
   className,
   ...props
 }: StatCardProps) {
@@ -74,42 +110,87 @@ function StatCard({
 
   return (
     <Card
-      className={cn("@container/stat-card", className)}
+      className={cn("@container/stat-card h-full", className)}
       {...props}
     >
-      <CardHeader>
-        <CardDescription>{label}</CardDescription>
-        <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/stat-card:text-3xl">
-          {value}
-        </CardTitle>
-        {trend && (
-          <CardAction>
-            <Badge
-              variant="outline"
-              className={cn("gap-1", directionClasses[direction])}
-            >
-              {TrendIcon && <TrendIcon className="size-3" aria-hidden="true" />}
-              <span aria-hidden={!!trend.srLabel}>{trend.value}</span>
-              {trend.srLabel ? (
-                <span className="sr-only">{trend.srLabel}</span>
+      <CardHeader className="space-y-3">
+        <div className="flex items-center justify-between gap-3">
+          <div className="flex items-center gap-3">
+            {leading ? <div className="shrink-0">{leading}</div> : null}
+            <div className="space-y-0.5">
+              {label ? <CardDescription>{label}</CardDescription> : null}
+              {subtitle ? (
+                <div className="text-xs text-muted-foreground">
+                  {subtitle}
+                </div>
               ) : null}
-            </Badge>
-          </CardAction>
-        )}
-      </CardHeader>
-      {(helper?.title || helper?.description) && (
-        <CardFooter className="flex-col items-start gap-1.5 text-sm">
-          {helper?.title && (
-            <div className="line-clamp-1 flex items-center gap-2 font-medium">
-              {HelperIcon && (
-                <HelperIcon className="size-4" aria-hidden="true" />
-              )}
-              <span>{helper.title}</span>
             </div>
-          )}
-          {helper?.description && (
-            <div className="text-muted-foreground">{helper.description}</div>
-          )}
+          </div>
+          {headerAction ? (
+            <div className="shrink-0">{headerAction}</div>
+          ) : null}
+        </div>
+
+        <div className="flex items-end justify-between gap-3">
+          <div className="space-y-1">
+            {value ? (
+              <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/stat-card:text-3xl">
+                {value}
+              </CardTitle>
+            ) : null}
+            {meta ? (
+              <div className="text-xs text-muted-foreground">{meta}</div>
+            ) : null}
+            {trend && (
+              <Badge
+                variant="outline"
+                className={cn("mt-1 inline-flex gap-1", directionClasses[direction])}
+              >
+                {TrendIcon && (
+                  <TrendIcon className="size-3" aria-hidden="true" />
+                )}
+                <span aria-hidden={!!trend.srLabel}>{trend.value}</span>
+                {trend.srLabel ? (
+                  <span className="sr-only">{trend.srLabel}</span>
+                ) : null}
+              </Badge>
+            )}
+          </div>
+          {trailing ? (
+            <div className="h-16 w-24 @[250px]/stat-card:w-28">{trailing}</div>
+          ) : null}
+        </div>
+      </CardHeader>
+      {(footerLeft ||
+        footerRight ||
+        helper?.title ||
+        helper?.description) && (
+        <CardFooter className="mt-auto flex items-center justify-between gap-4 text-sm">
+          <div className="min-w-0 flex-1">
+            {footerLeft ??
+              (helper?.title || helper?.description ? (
+                <div className="flex flex-col gap-1">
+                  {helper?.title && (
+                    <div className="line-clamp-1 flex items-center gap-2 font-medium">
+                      {HelperIcon && (
+                        <HelperIcon className="size-4" aria-hidden="true" />
+                      )}
+                      <span>{helper.title}</span>
+                    </div>
+                  )}
+                  {helper?.description && (
+                    <div className="text-muted-foreground">
+                      {helper.description}
+                    </div>
+                  )}
+                </div>
+              ) : null)}
+          </div>
+          {footerRight ? (
+            <div className="flex shrink-0 items-center gap-2">
+              {footerRight}
+            </div>
+          ) : null}
         </CardFooter>
       )}
     </Card>
