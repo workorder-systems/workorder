@@ -3,12 +3,11 @@ import * as React from 'react';
 import {
   Combobox,
   ComboboxContent,
+  ComboboxEmpty,
   ComboboxInput,
   ComboboxItem,
   ComboboxList,
-  ComboboxValue,
 } from './combobox';
-import { CheckIcon } from 'lucide-react';
 
 const meta = {
   title: 'Components/Combobox',
@@ -22,59 +21,77 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const frameworks = [
-  { value: 'react', label: 'React' },
-  { value: 'vue', label: 'Vue' },
-  { value: 'angular', label: 'Angular' },
-  { value: 'svelte', label: 'Svelte' },
-  { value: 'next', label: 'Next.js' },
-  { value: 'remix', label: 'Remix' },
-  { value: 'astro', label: 'Astro' },
-];
+const frameworks = ['Next.js', 'SvelteKit', 'Nuxt.js', 'Remix', 'Astro'];
 
 /**
- * Basic combobox with search functionality.
+ * The Combobox component provides a searchable select input with autocomplete.
+ * It filters options as you type and allows selection from a dropdown list.
  */
 export const Default: Story = {
-  render: () => {
-    const [value, setValue] = React.useState<string | null>(null);
-
-    return (
-      <Combobox value={value} onValueChange={setValue}>
-        <ComboboxInput placeholder="Select framework..." />
-        <ComboboxContent>
-          <ComboboxList>
-            {frameworks.map((framework) => (
-              <ComboboxItem key={framework.value} value={framework.value}>
-                <CheckIcon />
-                {framework.label}
-              </ComboboxItem>
-            ))}
-          </ComboboxList>
-        </ComboboxContent>
-      </Combobox>
-    );
-  },
+  render: () => (
+    <Combobox items={frameworks}>
+      <ComboboxInput placeholder="Select a framework" />
+      <ComboboxContent>
+        <ComboboxEmpty>No items found.</ComboboxEmpty>
+        <ComboboxList>
+          {(item) => (
+            <ComboboxItem key={item} value={item}>
+              {item}
+            </ComboboxItem>
+          )}
+        </ComboboxList>
+      </ComboboxContent>
+    </Combobox>
+  ),
 };
 
-/**
- * Combobox with clear button.
- */
 export const WithClear: Story = {
+  render: () => (
+    <Combobox items={frameworks}>
+      <ComboboxInput placeholder="Select a framework" showClear />
+      <ComboboxContent>
+        <ComboboxEmpty>No items found.</ComboboxEmpty>
+        <ComboboxList>
+          {(item) => (
+            <ComboboxItem key={item} value={item}>
+              {item}
+            </ComboboxItem>
+          )}
+        </ComboboxList>
+      </ComboboxContent>
+    </Combobox>
+  ),
+};
+
+export const CustomItems: Story = {
   render: () => {
-    const [value, setValue] = React.useState<string | null>('react');
+    type Framework = {
+      label: string;
+      value: string;
+    };
+
+    const frameworks: Framework[] = [
+      { label: 'Next.js', value: 'next' },
+      { label: 'SvelteKit', value: 'sveltekit' },
+      { label: 'Nuxt', value: 'nuxt' },
+      { label: 'Remix', value: 'remix' },
+      { label: 'Astro', value: 'astro' },
+    ];
 
     return (
-      <Combobox value={value} onValueChange={setValue}>
-        <ComboboxInput placeholder="Select framework..." showClear />
+      <Combobox
+        items={frameworks}
+        itemToStringValue={(framework) => framework.label}
+      >
+        <ComboboxInput placeholder="Select a framework" />
         <ComboboxContent>
+          <ComboboxEmpty>No items found.</ComboboxEmpty>
           <ComboboxList>
-            {frameworks.map((framework) => (
-              <ComboboxItem key={framework.value} value={framework.value}>
-                <CheckIcon />
+            {(framework) => (
+              <ComboboxItem key={framework.value} value={framework}>
                 {framework.label}
               </ComboboxItem>
-            ))}
+            )}
           </ComboboxList>
         </ComboboxContent>
       </Combobox>
@@ -82,52 +99,20 @@ export const WithClear: Story = {
   },
 };
 
-/**
- * Combobox with custom trigger button.
- */
-export const WithCustomTrigger: Story = {
-  render: () => {
-    const [value, setValue] = React.useState<string | null>(null);
-
-    return (
-      <Combobox value={value} onValueChange={setValue}>
-        <ComboboxValue placeholder="Select framework..." />
-        <ComboboxContent>
-          <ComboboxList>
-            {frameworks.map((framework) => (
-              <ComboboxItem key={framework.value} value={framework.value}>
-                <CheckIcon />
-                {framework.label}
-              </ComboboxItem>
-            ))}
-          </ComboboxList>
-        </ComboboxContent>
-      </Combobox>
-    );
-  },
-};
-
-/**
- * Combobox with disabled state.
- */
 export const Disabled: Story = {
-  render: () => {
-    const [value, setValue] = React.useState<string | null>(null);
-
-    return (
-      <Combobox value={value} onValueChange={setValue} disabled>
-        <ComboboxInput placeholder="Select framework..." />
-        <ComboboxContent>
-          <ComboboxList>
-            {frameworks.map((framework) => (
-              <ComboboxItem key={framework.value} value={framework.value}>
-                <CheckIcon />
-                {framework.label}
-              </ComboboxItem>
-            ))}
-          </ComboboxList>
-        </ComboboxContent>
-      </Combobox>
-    );
-  },
+  render: () => (
+    <Combobox items={frameworks} disabled>
+      <ComboboxInput placeholder="Select a framework" />
+      <ComboboxContent>
+        <ComboboxEmpty>No items found.</ComboboxEmpty>
+        <ComboboxList>
+          {(item) => (
+            <ComboboxItem key={item} value={item}>
+              {item}
+            </ComboboxItem>
+          )}
+        </ComboboxList>
+      </ComboboxContent>
+    </Combobox>
+  ),
 };
