@@ -313,7 +313,7 @@ export default function AssetsPage() {
         />
       </ExtensionPoint>
 
-      <div className="space-y-4">
+      <div className="w-full space-y-4">
         <DataTable table={table}>
           <DataTableToolbar table={table} />
         </DataTable>

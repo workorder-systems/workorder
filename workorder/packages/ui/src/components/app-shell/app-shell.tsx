@@ -57,7 +57,7 @@ export function AppShell({
       </Sidebar>
 
       {/* Main Content */}
-      <SidebarInset>
+      <SidebarInset className="overflow-visible min-h-0">
         <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] duration-300 ease-in-out group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
           <div className="flex items-center gap-2 px-4">
             <PortalTarget name="header.left" />
@@ -66,9 +66,11 @@ export function AppShell({
             <PortalTarget name="header.right" />
           </div>
         </header>
-        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
+        <div className="flex flex-col gap-4 p-4 pt-0 overflow-visible min-h-0">
           <PortalTarget name="page.header" />
-          {children}
+          <div className="flex flex-wrap gap-4">
+            {children}
+          </div>
         </div>
       </SidebarInset>
 
