@@ -15,7 +15,7 @@ import { RadioGroup, RadioGroupItem } from './radio-group';
 import { Label } from './label';
 
 const meta = {
-  title: 'Components/Field',
+  title: 'Forms/Field',
   component: Field,
   parameters: {
     layout: 'centered',

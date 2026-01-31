@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { TodoItem, type TodoItemProps } from './todo-item';
 
 const meta = {
-  title: 'Components/TodoItem',
+  title: 'Patterns/TodoItem',
   component: TodoItem,
   parameters: {
     layout: 'padded',

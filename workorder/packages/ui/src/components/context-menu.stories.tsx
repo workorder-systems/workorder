@@ -13,7 +13,7 @@ import {
 import { Button } from './button';
 
 const meta = {
-  title: 'Components/ContextMenu',
+  title: 'Overlay/ContextMenu',
   component: ContextMenu,
   parameters: {
     layout: 'centered',

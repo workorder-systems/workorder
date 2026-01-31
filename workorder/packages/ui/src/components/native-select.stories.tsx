@@ -7,7 +7,7 @@ import {
 } from './native-select';
 
 const meta = {
-  title: 'Components/Native Select',
+  title: 'Forms/NativeSelect',
   component: NativeSelect,
   parameters: {
     layout: 'centered',

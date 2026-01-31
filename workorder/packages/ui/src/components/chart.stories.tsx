@@ -16,7 +16,7 @@ import {
 } from 'recharts';
 
 const meta = {
-  title: 'Components/Chart',
+  title: 'Data/Chart',
   component: ChartContainer,
   parameters: {
     layout: 'centered',

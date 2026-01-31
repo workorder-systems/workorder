@@ -6,7 +6,7 @@ import { Input } from './input';
 import { CheckCircle, Settings, User, Mail, Bell } from 'lucide-react';
 
 const meta = {
-  title: 'Components/Toolbar Expandable',
+  title: 'Patterns/ToolbarExpandable',
   component: ToolbarExpandable,
   parameters: {
     layout: 'centered',

@@ -11,6 +11,21 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
+    options: {
+      storySort: {
+        order: [
+          'Primitives',
+          'Forms',
+          'Overlay',
+          'Layout',
+          'Navigation',
+          'Data',
+          'Feedback',
+          'Patterns',
+          'Examples',
+        ],
+      },
+    },
   },
   decorators: [
     // Use the React adapter for nuqs in Storybook

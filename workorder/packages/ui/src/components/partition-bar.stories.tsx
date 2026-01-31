@@ -6,7 +6,7 @@ import PartitionBar, {
 } from './partition-bar';
 
 const meta = {
-  title: 'Components/PartitionBar',
+  title: 'Data/PartitionBar',
   component: PartitionBar,
   parameters: {
     layout: 'centered',

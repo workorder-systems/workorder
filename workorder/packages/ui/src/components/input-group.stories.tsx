@@ -10,7 +10,7 @@ import {
 import { Search, Mail, Lock, Eye, EyeOff } from 'lucide-react';
 
 const meta = {
-  title: 'Components/Input Group',
+  title: 'Forms/InputGroup',
   component: InputGroup,
   parameters: {
     layout: 'centered',

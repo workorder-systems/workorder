@@ -4,7 +4,7 @@ import { Button } from './button';
 import { Avatar, AvatarImage, AvatarFallback } from './avatar';
 
 const meta = {
-  title: 'Components/HoverCard',
+  title: 'Overlay/HoverCard',
   component: HoverCard,
   parameters: {
     layout: 'centered',

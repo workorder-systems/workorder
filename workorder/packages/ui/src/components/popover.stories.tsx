@@ -10,7 +10,7 @@ import {
 import { Button } from './button';
 
 const meta = {
-  title: 'Components/Popover',
+  title: 'Overlay/Popover',
   component: Popover,
   parameters: {
     layout: 'centered',

@@ -8,7 +8,7 @@ import {
 } from './timeline';
 
 const meta = {
-  title: 'Components/Timeline',
+  title: 'Data/Timeline',
   component: Timeline,
   parameters: {
     layout: 'centered',

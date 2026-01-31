@@ -11,7 +11,7 @@ import {
 import { Button } from './button';
 
 const meta = {
-  title: 'Components/ResponsiveDialog',
+  title: 'Overlay/ResponsiveDialog',
   component: ResponsiveDialog,
   parameters: {
     layout: 'centered',

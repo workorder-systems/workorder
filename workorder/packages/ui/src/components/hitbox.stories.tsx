@@ -4,7 +4,7 @@ import { Hitbox } from './hitbox';
 import { Button } from './button';
 
 const meta = {
-  title: 'Components/Hitbox',
+  title: 'Primitives/Hitbox',
   component: Hitbox,
   parameters: {
     layout: 'centered',

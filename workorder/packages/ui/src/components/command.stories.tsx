@@ -15,7 +15,7 @@ import { Button } from './button';
 import { CalculatorIcon, CalendarIcon, CreditCardIcon, SettingsIcon, SmileIcon, UserIcon } from 'lucide-react';
 
 const meta = {
-  title: 'Components/Command',
+  title: 'Navigation/Command',
   component: Command,
   parameters: {
     layout: 'centered',

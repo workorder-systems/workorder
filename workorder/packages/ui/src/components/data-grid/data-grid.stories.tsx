@@ -5,7 +5,7 @@ import { DataGrid } from './data-grid';
 import { useDataGrid } from '../../hooks/use-data-grid';
 
 const meta = {
-  title: 'Components/Data Grid',
+  title: 'Data/DataGrid',
   component: DataGrid,
   parameters: {
     layout: 'padded',

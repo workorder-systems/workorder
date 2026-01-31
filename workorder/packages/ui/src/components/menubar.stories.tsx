@@ -17,7 +17,7 @@ import {
 } from './menubar';
 
 const meta = {
-  title: 'Components/Menubar',
+  title: 'Navigation/Menubar',
   component: Menubar,
   parameters: {
     layout: 'centered',

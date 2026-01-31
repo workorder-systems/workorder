@@ -15,7 +15,7 @@ import {
 import { Download, FileText, MoreVertical, Save, Share2, Trash2 } from 'lucide-react';
 
 const meta = {
-  title: 'Components/ButtonGroup',
+  title: 'Patterns/ButtonGroup',
   component: ButtonGroup,
   parameters: {
     layout: 'centered',

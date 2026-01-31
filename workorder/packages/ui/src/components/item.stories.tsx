@@ -14,7 +14,7 @@ import { Avatar, AvatarFallback, AvatarImage } from './avatar';
 import { MoreHorizontal, User } from 'lucide-react';
 
 const meta = {
-  title: 'Components/Item',
+  title: 'Patterns/ListItem',
   component: Item,
   parameters: {
     layout: 'centered',

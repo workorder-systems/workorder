@@ -5,7 +5,7 @@ import { Button } from './button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './card';
 
 const meta = {
-  title: 'Components/Tour',
+  title: 'Patterns/Tour',
   component: TourProvider,
   parameters: {
     layout: 'centered',

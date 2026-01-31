@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { GoalCard, type GoalCardProps } from './goal-card';
 
 const meta = {
-  title: 'Components/GoalCard',
+  title: 'Patterns/GoalCard',
   component: GoalCard,
   parameters: {
     layout: 'padded',

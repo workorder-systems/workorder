@@ -11,7 +11,7 @@ import { Button } from './button';
 import { InboxIcon } from 'lucide-react';
 
 const meta = {
-  title: 'Components/Empty',
+  title: 'Feedback/Empty',
   component: Empty,
   parameters: {
     layout: 'centered',

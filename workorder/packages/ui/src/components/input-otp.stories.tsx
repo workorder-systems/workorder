@@ -8,7 +8,7 @@ import {
 } from './input-otp';
 
 const meta = {
-  title: 'Components/Input OTP',
+  title: 'Forms/InputOTP',
   component: InputOTP,
   parameters: {
     layout: 'centered',

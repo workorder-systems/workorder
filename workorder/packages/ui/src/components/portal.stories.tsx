@@ -5,7 +5,7 @@ import { Button } from './button';
 import { Dialog, DialogContent, DialogTrigger } from './dialog';
 
 const meta = {
-  title: 'Components/Portal',
+  title: 'Primitives/Portal',
   component: Portal,
   parameters: {
     layout: 'centered',

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Kbd, KbdGroup } from './kbd';
 
 const meta = {
-  title: 'Components/Kbd',
+  title: 'Primitives/Kbd',
   component: Kbd,
   parameters: {
     layout: 'centered',

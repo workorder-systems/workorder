@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { NotificationCard, type NotificationCardProps } from './notification-card';
 
 const meta = {
-  title: 'Components/NotificationCard',
+  title: 'Patterns/NotificationCard',
   component: NotificationCard,
   parameters: {
     layout: 'padded',

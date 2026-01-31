@@ -14,7 +14,7 @@ import { Input } from './input';
 import { Label } from './label';
 
 const meta = {
-  title: 'Components/Sheet',
+  title: 'Overlay/Sheet',
   component: Sheet,
   parameters: {
     layout: 'centered',

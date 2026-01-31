@@ -4,7 +4,7 @@ import { DirectionProvider } from './direction';
 import { Button } from './button';
 
 const meta = {
-  title: 'Components/Direction',
+  title: 'Primitives/Direction',
   component: DirectionProvider,
   parameters: {
     layout: 'centered',

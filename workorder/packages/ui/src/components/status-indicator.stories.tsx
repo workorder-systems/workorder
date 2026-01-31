@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import StatusIndicator from './status-indicator';
 
 const meta = {
-  title: 'Components/StatusIndicator',
+  title: 'Primitives/StatusIndicator',
   component: StatusIndicator as React.ComponentType<React.ComponentProps<typeof StatusIndicator>>,
   parameters: {
     layout: 'centered',

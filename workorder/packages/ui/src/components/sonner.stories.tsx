@@ -5,7 +5,7 @@ import { toast } from 'sonner';
 import { Button } from './button';
 
 const meta = {
-  title: 'Components/Sonner',
+  title: 'Feedback/Sonner',
   component: Toaster,
   parameters: {
     layout: 'fullscreen',

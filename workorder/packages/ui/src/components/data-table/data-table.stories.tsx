@@ -8,7 +8,7 @@ import { DataTableToolbar } from './data-table-toolbar';
 import { useDataTable } from '@workspace/ui/hooks/use-data-table';
 
 const meta = {
-  title: 'Components/DataTable',
+  title: 'Data/DataTable',
   component: DataTable,
   parameters: {
     layout: 'padded',

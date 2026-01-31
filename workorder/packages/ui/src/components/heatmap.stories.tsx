@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Heatmap, type HeatmapData } from './heatmap';
 
 const meta = {
-  title: 'Components/Heatmap',
+  title: 'Data/Heatmap',
   component: Heatmap,
   parameters: {
     layout: 'centered',

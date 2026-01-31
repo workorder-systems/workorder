@@ -7,7 +7,7 @@ import {
 } from './accordion';
 
 const meta = {
-  title: 'Components/Accordion',
+  title: 'Layout/Accordion',
   component: Accordion,
   parameters: {
     layout: 'centered',

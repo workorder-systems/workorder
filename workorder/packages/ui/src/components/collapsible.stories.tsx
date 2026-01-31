@@ -4,7 +4,7 @@ import { Button } from './button';
 import { ChevronDownIcon } from 'lucide-react';
 
 const meta = {
-  title: 'Components/Collapsible',
+  title: 'Layout/Collapsible',
   component: Collapsible,
   parameters: {
     layout: 'centered',

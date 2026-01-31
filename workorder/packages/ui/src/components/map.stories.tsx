@@ -29,7 +29,7 @@ import {
 } from './map';
 
 const meta = {
-  title: 'Components/Map',
+  title: 'Data/Map',
   component: Map,
   parameters: {
     layout: 'padded',

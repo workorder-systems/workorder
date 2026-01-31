@@ -13,7 +13,7 @@ import { Input } from './input';
 import { Label } from './label';
 
 const meta = {
-  title: 'Components/Drawer',
+  title: 'Overlay/Drawer',
   component: Drawer,
   parameters: {
     layout: 'centered',

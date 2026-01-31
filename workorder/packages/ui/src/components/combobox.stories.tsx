@@ -10,7 +10,7 @@ import {
 } from './combobox';
 
 const meta = {
-  title: 'Components/Combobox',
+  title: 'Forms/Combobox',
   component: Combobox,
   parameters: {
     layout: 'centered',

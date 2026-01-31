@@ -15,7 +15,7 @@ import { Button } from './button';
 import { Checkbox } from './checkbox';
 
 const meta = {
-  title: 'Components/Form',
+  title: 'Forms/Form',
   component: Form,
   parameters: {
     layout: 'centered',

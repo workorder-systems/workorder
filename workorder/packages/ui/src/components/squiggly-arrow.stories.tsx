@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { SquigglyArrow } from './squiggly-arrow';
 
 const meta = {
-  title: 'Components/SquigglyArrow',
+  title: 'Primitives/SquigglyArrow',
   component: SquigglyArrow,
   parameters: {
     layout: 'centered',
