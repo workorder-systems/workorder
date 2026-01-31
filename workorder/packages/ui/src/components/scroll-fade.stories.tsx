@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import ScrollFade from './scroll-fade';
 
 const meta = {
-  title: 'Primitives/ScrollFade',
+  title: 'Layout/ScrollFade',
   component: ScrollFade as React.ComponentType<React.ComponentProps<typeof ScrollFade>>,
   parameters: {
     layout: 'centered',

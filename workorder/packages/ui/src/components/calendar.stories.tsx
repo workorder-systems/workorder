@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Calendar } from './calendar';
 
 const meta = {
-  title: 'Data/Calendar',
+  title: 'Forms/Calendar',
   component: Calendar,
   parameters: {
     layout: 'centered',
