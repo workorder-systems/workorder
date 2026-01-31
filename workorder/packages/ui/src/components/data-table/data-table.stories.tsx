@@ -14,6 +14,8 @@ const meta = {
     layout: 'padded',
   },
   tags: ['autodocs'],
+  // Note: NuqsStorybookAdapter is automatically applied via .storybook/preview.ts
+  // No need to add it here - it works seamlessly!
 } satisfies Meta<typeof DataTable>;
 
 export default meta;
