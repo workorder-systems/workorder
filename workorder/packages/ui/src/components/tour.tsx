@@ -5,10 +5,6 @@ import { XIcon } from "lucide-react"
 import * as React from "react"
 import { createPortal } from "react-dom"
 
-// Import Next.js Link (will be stubbed in Storybook via Vite alias)
-// @ts-expect-error - next/link may not be available in non-Next.js environments
-import Link from "next/link"
-
 import { cn } from "@workspace/ui/lib/utils"
 import { Button } from "@workspace/ui/components/button"
 import {
@@ -26,10 +22,29 @@ import {
     PopoverContent,
 } from "@workspace/ui/components/popover"
 
+type LinkComponent = React.ComponentType<
+    React.PropsWithChildren<{ href: string; className?: string }>
+>
+
 const TourContext = React.createContext<{
     start: (tourId: string) => void
     close: () => void
 } | null>(null)
+
+const LinkContext = React.createContext<LinkComponent | null>(null)
+
+// Default Link component that uses a regular anchor tag
+function DefaultLink({
+    href,
+    className,
+    children,
+}: React.PropsWithChildren<{ href: string; className?: string }>) {
+    return (
+        <a href={href} className={className}>
+            {children}
+        </a>
+    )
+}
 
 function useTour() {
     const context = React.useContext(TourContext)
@@ -62,9 +77,11 @@ interface Tour {
 function TourProvider({
     tours,
     children,
+    LinkComponent,
 }: {
     tours: Tour[]
     children: React.ReactNode
+    LinkComponent?: LinkComponent
 }) {
     const [isOpen, setIsOpen] = React.useState(false)
     const [activeTourId, setActiveTourId] = React.useState<string | null>(null)
@@ -116,17 +133,19 @@ function TourProvider({
                 start,
                 close,
             }}>
-            {children}
-            {isOpen && activeTour && steps.length > 0 && steps[currentStepIndex] && (
-                <TourOverlay
-                    step={steps[currentStepIndex]!}
-                    currentStepIndex={currentStepIndex}
-                    totalSteps={steps.length}
-                    onNext={next}
-                    onPrevious={previous}
-                    onClose={close}
-                />
-            )}
+            <LinkContext.Provider value={LinkComponent || DefaultLink}>
+                {children}
+                {isOpen && activeTour && steps.length > 0 && steps[currentStepIndex] && (
+                    <TourOverlay
+                        step={steps[currentStepIndex]!}
+                        currentStepIndex={currentStepIndex}
+                        totalSteps={steps.length}
+                        onNext={next}
+                        onPrevious={previous}
+                        onClose={close}
+                    />
+                )}
+            </LinkContext.Provider>
         </TourContext.Provider>
     )
 }
@@ -146,6 +165,7 @@ function TourOverlay({
     onPrevious: () => void
     onClose: () => void
 }) {
+    const Link = React.useContext(LinkContext) || DefaultLink
     const [targets, setTargets] = React.useState<
         { rect: DOMRect; radius: number }[]
     >([])
@@ -346,7 +366,7 @@ function TourOverlay({
                                             variant="outline"
                                             onClick={onPrevious}
                                             asChild>
-                                            <Link href={step.previousRoute}>
+                                            <Link href={step.previousRoute} className="inline-flex">
                                                 {step.previousLabel ??
                                                     "Previous"}
                                             </Link>
@@ -363,7 +383,7 @@ function TourOverlay({
                                         className="ml-auto"
                                         onClick={onNext}
                                         asChild>
-                                        <Link href={step.nextRoute}>
+                                        <Link href={step.nextRoute} className="inline-flex">
                                             {step.nextLabel ??
                                                 (currentStepIndex ===
                                                 totalSteps - 1
@@ -463,4 +483,11 @@ function SquigglyArrow({
     )
 }
 
-export { TourProvider, useTour, SquigglyArrow, type Step, type Tour }
+export {
+    TourProvider,
+    useTour,
+    SquigglyArrow,
+    type Step,
+    type Tour,
+    type LinkComponent,
+}
