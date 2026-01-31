@@ -68,7 +68,8 @@
     "tailwind-merge": "^3.3.1",
     "tw-animate-css": "^1.3.6",
     "vaul": "^1.1.2",
-    "zod": "^3.25.76"
+    "zod": "^3.25.76",
+    "zustand": "^5.0.0"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^8.4.7",
@@ -100,6 +101,8 @@
     "./postcss.config": "./postcss.config.mjs",
     "./lib/*": "./src/lib/*.ts",
     "./components/*": "./src/components/*.tsx",
-    "./hooks/*": "./src/hooks/*.ts"
+    "./components/app-shell": "./src/components/app-shell/index.ts",
+    "./hooks/*": "./src/hooks/*.ts",
+    "./nuqs-adapter": "./src/nuqs-adapter.tsx"
   }
 }

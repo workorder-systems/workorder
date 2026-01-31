@@ -1,12 +1,12 @@
-import { Button } from "@workspace/ui/components/button"
-
 export default function Page() {
   return (
-    <div className="flex items-center justify-center min-h-svh">
-      <div className="flex flex-col items-center justify-center gap-4">
-        <h1 className="text-2xl font-bold">Hello World</h1>
-        <Button size="sm">Button</Button>
+    <>
+      <div className="grid auto-rows-min gap-4 md:grid-cols-3">
+        <div className="aspect-video rounded-xl bg-muted/50" />
+        <div className="aspect-video rounded-xl bg-muted/50" />
+        <div className="aspect-video rounded-xl bg-muted/50" />
       </div>
-    </div>
-  )
+      <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min" />
+    </>
+  );
 }
