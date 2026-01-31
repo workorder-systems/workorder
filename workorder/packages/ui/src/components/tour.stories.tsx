@@ -16,23 +16,22 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// Example tour data
 const exampleTour: Tour = {
   id: 'example-tour',
   steps: [
     {
       id: 'step-1',
-      title: 'Welcome!',
-      content: 'This is the first step of the tour. Click Next to continue.',
+      title: 'Welcome to the Tour',
+      content: 'This is the first step. Click Next to continue.',
     },
     {
       id: 'step-2',
-      title: 'Feature 1',
-      content: 'This is the second step. You can navigate between steps.',
+      title: 'Feature Overview',
+      content: 'This is the second step showing another feature.',
     },
     {
       id: 'step-3',
-      title: 'Feature 2',
+      title: 'Final Step',
       content: 'This is the final step. Click Finish to complete the tour.',
     },
   ],
@@ -45,31 +44,37 @@ function TourDemo() {
     <div className="flex flex-col gap-4">
       <Button onClick={() => start('example-tour')}>Start Tour</Button>
       <div className="flex flex-col gap-4">
-        <Card data-tour-step-id="step-1">
+        <Card data-tour-step-id="step-1" className="w-[350px]">
           <CardHeader>
             <CardTitle>Feature 1</CardTitle>
             <CardDescription>This is the first feature</CardDescription>
           </CardHeader>
           <CardContent>
-            <p>Some content here</p>
+            <p className="text-sm text-muted-foreground">
+              This card is highlighted in step 1 of the tour.
+            </p>
           </CardContent>
         </Card>
-        <Card data-tour-step-id="step-2">
+        <Card data-tour-step-id="step-2" className="w-[350px]">
           <CardHeader>
             <CardTitle>Feature 2</CardTitle>
             <CardDescription>This is the second feature</CardDescription>
           </CardHeader>
           <CardContent>
-            <p>Some content here</p>
+            <p className="text-sm text-muted-foreground">
+              This card is highlighted in step 2 of the tour.
+            </p>
           </CardContent>
         </Card>
-        <Card data-tour-step-id="step-3">
+        <Card data-tour-step-id="step-3" className="w-[350px]">
           <CardHeader>
             <CardTitle>Feature 3</CardTitle>
             <CardDescription>This is the third feature</CardDescription>
           </CardHeader>
           <CardContent>
-            <p>Some content here</p>
+            <p className="text-sm text-muted-foreground">
+              This card is highlighted in step 3 of the tour.
+            </p>
           </CardContent>
         </Card>
       </div>
@@ -78,7 +83,8 @@ function TourDemo() {
 }
 
 /**
- * Basic tour with default anchor tag links (works in any React app).
+ * The Tour component provides a guided tour experience with step-by-step highlights.
+ * Elements are targeted using the `data-tour-step-id` attribute.
  */
 export const Default: Story = {
   render: () => (
@@ -88,96 +94,101 @@ export const Default: Story = {
   ),
 };
 
-/**
- * Tour with Next.js Link component.
- * 
- * To use with Next.js, pass the Link component from 'next/link':
- * 
- * ```tsx
- * import Link from 'next/link'
- * 
- * <TourProvider tours={[exampleTour]} LinkComponent={Link}>
- *   <TourDemo />
- * </TourProvider>
- * ```
- */
-export const WithNextLink: Story = {
-  render: () => {
-    // Simulate Next.js Link component for Storybook
-    const NextLink = ({ href, className, children }: { href: string; className?: string; children: React.ReactNode }) => {
-      return (
-        <a href={href} className={className} onClick={(e) => {
-          e.preventDefault();
-          console.log('Navigating to:', href);
-        }}>
-          {children}
-        </a>
-      );
-    };
+const customPositionTour: Tour = {
+  id: 'custom-position-tour',
+  steps: [
+    {
+      id: 'step-1',
+      title: 'Custom Position',
+      content: 'This popover appears on the right side of the target element.',
+      side: 'right',
+      sideOffset: 10,
+    },
+    {
+      id: 'step-2',
+      title: 'Top Position',
+      content: 'This popover appears above the target element.',
+      side: 'top',
+      align: 'start',
+    },
+  ],
+};
 
-    const tourWithRoutes: Tour = {
-      id: 'tour-with-routes',
-      steps: [
-        {
-          id: 'step-1',
-          title: 'Welcome!',
-          content: 'This step has a route. Click Next to navigate.',
-          nextRoute: '/step-2',
-        },
-        {
-          id: 'step-2',
-          title: 'Step 2',
-          content: 'You can navigate back and forth.',
-          previousRoute: '/step-1',
-          nextRoute: '/step-3',
-        },
-        {
-          id: 'step-3',
-          title: 'Final Step',
-          content: 'This is the final step.',
-          previousRoute: '/step-2',
-        },
-      ],
-    };
+/**
+ * Tour steps can be positioned using the `side`, `align`, `sideOffset`, and `alignOffset` properties.
+ */
+export const CustomPosition: Story = {
+  render: () => {
+    function CustomTourDemo() {
+      const { start } = useTour();
+      return (
+        <div className="flex flex-col gap-4">
+          <Button onClick={() => start('custom-position-tour')}>Start Custom Position Tour</Button>
+          <div className="flex flex-col gap-4">
+            <Card data-tour-step-id="step-1" className="w-[350px]">
+              <CardHeader>
+                <CardTitle>Right Side</CardTitle>
+                <CardDescription>Popover appears on the right</CardDescription>
+              </CardHeader>
+            </Card>
+            <Card data-tour-step-id="step-2" className="w-[350px]">
+              <CardHeader>
+                <CardTitle>Top Position</CardTitle>
+                <CardDescription>Popover appears on top</CardDescription>
+              </CardHeader>
+            </Card>
+          </div>
+        </div>
+      );
+    }
 
     return (
-      <TourProvider tours={[tourWithRoutes]} LinkComponent={NextLink}>
-        <TourDemo />
+      <TourProvider tours={[customPositionTour]}>
+        <CustomTourDemo />
       </TourProvider>
     );
   },
 };
 
+const singleStepTour: Tour = {
+  id: 'single-step-tour',
+  steps: [
+    {
+      id: 'step-1',
+      title: 'Single Step Tour',
+      content: 'This is a simple tour with just one step.',
+    },
+  ],
+};
+
 /**
- * Tour with React Router Link component.
- * 
- * To use with React Router, pass the Link component from 'react-router-dom':
- * 
- * ```tsx
- * import { Link } from 'react-router-dom'
- * 
- * <TourProvider tours={[exampleTour]} LinkComponent={Link}>
- *   <TourDemo />
- * </TourProvider>
- * ```
+ * A tour can have a single step for simple introductions.
  */
-export const WithReactRouterLink: Story = {
+export const SingleStep: Story = {
   render: () => {
-    // Simulate React Router Link component for Storybook
-    const RouterLink = ({ href, className, children }: { href: string; className?: string; children: React.ReactNode }) => {
+    function SingleStepDemo() {
+      const { start } = useTour();
       return (
-        <a href={href} className={className} onClick={(e) => {
-          e.preventDefault();
-          console.log('React Router navigating to:', href);
-        }}>
-          {children}
-        </a>
+        <div className="flex flex-col gap-4">
+          <Button onClick={() => start('single-step-tour')}>Start Single Step Tour</Button>
+          <Card data-tour-step-id="step-1" className="w-[350px]">
+            <CardHeader>
+              <CardTitle>Welcome</CardTitle>
+              <CardDescription>A simple one-step introduction</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm text-muted-foreground">
+                This card will be highlighted when you start the tour.
+              </p>
+            </CardContent>
+          </Card>
+        </div>
       );
-    };
+    }
 
     return (
-      <TourProvider tours={[exampleTour]} LinkComponent={RouterLink}>
-        <TourDemo />
+      <TourProvider tours={[singleStepTour]}>
+        <SingleStepDemo />
       </TourProvider>
     );
   },

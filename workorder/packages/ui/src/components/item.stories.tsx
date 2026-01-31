@@ -1,13 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import * as React from 'react';
 import {
   Item,
   ItemActions,
   ItemContent,
   ItemDescription,
-  ItemFooter,
   ItemGroup,
-  ItemHeader,
   ItemMedia,
   ItemSeparator,
   ItemTitle,
@@ -29,11 +26,12 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 /**
- * Basic item with title and description.
+ * The Item component provides a structured way to display list items with media,
+ * content, and actions. It's useful for building lists, menus, and navigation.
  */
 export const Default: Story = {
   render: () => (
-    <ItemGroup className="w-full max-w-sm">
+    <ItemGroup className="w-[350px]">
       <Item>
         <ItemMedia>
           <Avatar>
@@ -50,12 +48,9 @@ export const Default: Story = {
   ),
 };
 
-/**
- * Item with icon media.
- */
 export const WithIcon: Story = {
   render: () => (
-    <ItemGroup className="w-full max-w-sm">
+    <ItemGroup className="w-[350px]">
       <Item>
         <ItemMedia variant="icon">
           <User className="h-4 w-4" />
@@ -69,12 +64,9 @@ export const WithIcon: Story = {
   ),
 };
 
-/**
- * Item with actions.
- */
 export const WithActions: Story = {
   render: () => (
-    <ItemGroup className="w-full max-w-sm">
+    <ItemGroup className="w-[350px]">
       <Item>
         <ItemMedia>
           <Avatar>
@@ -96,43 +88,9 @@ export const WithActions: Story = {
   ),
 };
 
-/**
- * Item with header and footer.
- */
-export const WithHeaderFooter: Story = {
-  render: () => (
-    <ItemGroup className="w-full max-w-sm">
-      <Item>
-        <ItemHeader>
-          <ItemTitle>Project Alpha</ItemTitle>
-          <ItemActions>
-            <Button variant="ghost" size="icon">
-              <MoreHorizontal className="h-4 w-4" />
-            </Button>
-          </ItemActions>
-        </ItemHeader>
-        <ItemContent>
-          <ItemDescription>
-            A comprehensive project management system with advanced features.
-          </ItemDescription>
-        </ItemContent>
-        <ItemFooter>
-          <span className="text-sm text-muted-foreground">Updated 2 hours ago</span>
-          <Button variant="outline" size="sm">
-            View Details
-          </Button>
-        </ItemFooter>
-      </Item>
-    </ItemGroup>
-  ),
-};
-
-/**
- * Item list with separators.
- */
 export const List: Story = {
   render: () => (
-    <ItemGroup className="w-full max-w-sm">
+    <ItemGroup className="w-[350px]">
       <Item>
         <ItemMedia>
           <Avatar>
@@ -173,50 +131,25 @@ export const List: Story = {
   ),
 };
 
-/**
- * Item with different variants.
- */
 export const Variants: Story = {
   render: () => (
-    <ItemGroup className="w-full max-w-sm space-y-4">
+    <ItemGroup className="w-[350px] space-y-4">
       <Item variant="default">
         <ItemContent>
-          <ItemTitle>Default Variant</ItemTitle>
+          <ItemTitle>Default</ItemTitle>
           <ItemDescription>Transparent background</ItemDescription>
         </ItemContent>
       </Item>
       <Item variant="outline">
         <ItemContent>
-          <ItemTitle>Outline Variant</ItemTitle>
+          <ItemTitle>Outline</ItemTitle>
           <ItemDescription>With border</ItemDescription>
         </ItemContent>
       </Item>
       <Item variant="muted">
         <ItemContent>
-          <ItemTitle>Muted Variant</ItemTitle>
+          <ItemTitle>Muted</ItemTitle>
           <ItemDescription>With muted background</ItemDescription>
-        </ItemContent>
-      </Item>
-    </ItemGroup>
-  ),
-};
-
-/**
- * Item with different sizes.
- */
-export const Sizes: Story = {
-  render: () => (
-    <ItemGroup className="w-full max-w-sm space-y-4">
-      <Item size="sm">
-        <ItemContent>
-          <ItemTitle>Small Size</ItemTitle>
-          <ItemDescription>Compact item layout</ItemDescription>
-        </ItemContent>
-      </Item>
-      <Item size="default">
-        <ItemContent>
-          <ItemTitle>Default Size</ItemTitle>
-          <ItemDescription>Standard item layout</ItemDescription>
         </ItemContent>
       </Item>
     </ItemGroup>

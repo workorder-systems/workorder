@@ -6,9 +6,7 @@ import {
   InputGroupButton,
   InputGroupInput,
   InputGroupText,
-  InputGroupTextarea,
 } from './input-group';
-import { Button } from './button';
 import { Search, Mail, Lock, Eye, EyeOff } from 'lucide-react';
 
 const meta = {
@@ -24,11 +22,12 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 /**
- * Input group with prefix icon.
+ * The Input Group component combines an input with addons like icons or buttons.
+ * It provides a unified styling and focus management for grouped inputs.
  */
-export const WithPrefix: Story = {
+export const Default: Story = {
   render: () => (
-    <InputGroup className="w-full max-w-sm">
+    <InputGroup className="w-[350px]">
       <InputGroupAddon align="inline-start">
         <InputGroupText>
           <Mail className="h-4 w-4" />
@@ -39,12 +38,9 @@ export const WithPrefix: Story = {
   ),
 };
 
-/**
- * Input group with suffix button.
- */
 export const WithSuffix: Story = {
   render: () => (
-    <InputGroup className="w-full max-w-sm">
+    <InputGroup className="w-[350px]">
       <InputGroupInput type="search" placeholder="Search..." />
       <InputGroupAddon align="inline-end">
         <InputGroupButton>
@@ -55,12 +51,9 @@ export const WithSuffix: Story = {
   ),
 };
 
-/**
- * Input group with both prefix and suffix.
- */
 export const WithPrefixAndSuffix: Story = {
   render: () => (
-    <InputGroup className="w-full max-w-sm">
+    <InputGroup className="w-[350px]">
       <InputGroupAddon align="inline-start">
         <InputGroupText>
           <Lock className="h-4 w-4" />
@@ -76,12 +69,9 @@ export const WithPrefixAndSuffix: Story = {
   ),
 };
 
-/**
- * Input group with text prefix.
- */
 export const WithTextPrefix: Story = {
   render: () => (
-    <InputGroup className="w-full max-w-sm">
+    <InputGroup className="w-[350px]">
       <InputGroupAddon align="inline-start">
         <InputGroupText>https://</InputGroupText>
       </InputGroupAddon>
@@ -90,29 +80,12 @@ export const WithTextPrefix: Story = {
   ),
 };
 
-/**
- * Input group with textarea.
- */
-export const WithTextarea: Story = {
-  render: () => (
-    <InputGroup className="w-full max-w-sm">
-      <InputGroupAddon align="block-start">
-        <InputGroupText>Message</InputGroupText>
-      </InputGroupAddon>
-      <InputGroupTextarea placeholder="Enter your message..." rows={4} />
-    </InputGroup>
-  ),
-};
-
-/**
- * Input group with multiple buttons.
- */
-export const WithMultipleButtons: Story = {
+export const PasswordToggle: Story = {
   render: () => {
     const [showPassword, setShowPassword] = React.useState(false);
 
     return (
-      <InputGroup className="w-full max-w-sm">
+      <InputGroup className="w-[350px]">
         <InputGroupAddon align="inline-start">
           <InputGroupText>
             <Lock className="h-4 w-4" />
@@ -134,25 +107,4 @@ export const WithMultipleButtons: Story = {
       </InputGroup>
     );
   },
-};
-
-/**
- * Input group with error state.
- */
-export const WithError: Story = {
-  render: () => (
-    <InputGroup className="w-full max-w-sm">
-      <InputGroupAddon align="inline-start">
-        <InputGroupText>
-          <Mail className="h-4 w-4" />
-        </InputGroupText>
-      </InputGroupAddon>
-      <InputGroupInput
-        type="email"
-        placeholder="Email"
-        aria-invalid="true"
-        defaultValue="invalid-email"
-      />
-    </InputGroup>
-  ),
 };

@@ -26,43 +26,31 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-interface FormValues {
-  username: string;
-  email: string;
-  password: string;
-  terms: boolean;
-}
-
 /**
- * Basic form with validation using react-hook-form.
+ * The Form component provides form state management using react-hook-form.
+ * It includes validation, error handling, and accessible form structure.
  */
 export const Default: Story = {
   render: () => {
-    const form = useForm<FormValues>({
+    const form = useForm({
       defaultValues: {
         username: '',
         email: '',
-        password: '',
-        terms: false,
       },
     });
 
-    const onSubmit = (data: FormValues) => {
+    const onSubmit = (data: unknown) => {
       console.log(data);
     };
 
     return (
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="w-full max-w-sm space-y-6">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="w-[350px] space-y-4">
           <FormField
             control={form.control}
             name="username"
             rules={{
               required: 'Username is required',
-              minLength: {
-                value: 3,
-                message: 'Username must be at least 3 characters',
-              },
             }}
             render={({ field }) => (
               <FormItem>
@@ -82,6 +70,48 @@ export const Default: Story = {
             name="email"
             rules={{
               required: 'Email is required',
+            }}
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Email</FormLabel>
+                <FormControl>
+                  <Input type="email" placeholder="john@example.com" {...field} />
+                </FormControl>
+                <FormDescription>
+                  We'll never share your email.
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <Button type="submit">Submit</Button>
+        </form>
+      </Form>
+    );
+  },
+};
+
+export const WithValidation: Story = {
+  render: () => {
+    const form = useForm({
+      defaultValues: {
+        email: '',
+        password: '',
+      },
+    });
+
+    const onSubmit = (data: unknown) => {
+      console.log(data);
+    };
+
+    return (
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="w-[350px] space-y-4">
+          <FormField
+            control={form.control}
+            name="email"
+            rules={{
+              required: 'Email is required',
               pattern: {
                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                 message: 'Invalid email address',
@@ -93,9 +123,6 @@ export const Default: Story = {
                 <FormControl>
                   <Input type="email" placeholder="john@example.com" {...field} />
                 </FormControl>
-                <FormDescription>
-                  We'll never share your email.
-                </FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -116,13 +143,32 @@ export const Default: Story = {
                 <FormControl>
                   <Input type="password" {...field} />
                 </FormControl>
-                <FormDescription>
-                  Must be at least 8 characters.
-                </FormDescription>
                 <FormMessage />
               </FormItem>
             )}
           />
+          <Button type="submit">Submit</Button>
+        </form>
+      </Form>
+    );
+  },
+};
+
+export const WithCheckbox: Story = {
+  render: () => {
+    const form = useForm({
+      defaultValues: {
+        terms: false,
+      },
+    });
+
+    const onSubmit = (data: unknown) => {
+      console.log(data);
+    };
+
+    return (
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="w-[350px] space-y-4">
           <FormField
             control={form.control}
             name="terms"

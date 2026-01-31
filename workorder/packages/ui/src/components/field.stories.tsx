@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import * as React from 'react';
 import {
   Field,
   FieldContent,
@@ -9,7 +8,6 @@ import {
   FieldLabel,
   FieldLegend,
   FieldSet,
-  FieldTitle,
 } from './field';
 import { Input } from './input';
 import { Checkbox } from './checkbox';
@@ -29,11 +27,12 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 /**
- * Basic field with vertical orientation (default).
+ * The Field component provides a structured way to build form fields with labels,
+ * descriptions, and error messages. It supports vertical and horizontal layouts.
  */
 export const Default: Story = {
   render: () => (
-    <FieldGroup className="w-full max-w-sm">
+    <FieldGroup className="w-[350px]">
       <Field>
         <FieldLabel>Email</FieldLabel>
         <FieldContent>
@@ -47,31 +46,22 @@ export const Default: Story = {
   ),
 };
 
-/**
- * Field with horizontal orientation.
- */
 export const Horizontal: Story = {
   render: () => (
-    <FieldGroup className="w-full max-w-sm">
+    <FieldGroup className="w-[350px]">
       <Field orientation="horizontal">
         <FieldLabel>Email</FieldLabel>
         <FieldContent>
           <Input type="email" placeholder="john@example.com" />
-          <FieldDescription>
-            Enter your email address.
-          </FieldDescription>
         </FieldContent>
       </Field>
     </FieldGroup>
   ),
 };
 
-/**
- * Field with error state.
- */
 export const WithError: Story = {
   render: () => (
-    <FieldGroup className="w-full max-w-sm">
+    <FieldGroup className="w-[350px]">
       <Field>
         <FieldLabel>Email</FieldLabel>
         <FieldContent>
@@ -83,12 +73,9 @@ export const WithError: Story = {
   ),
 };
 
-/**
- * Field set with legend.
- */
-export const FieldSetExample: Story = {
+export const WithFieldSet: Story = {
   render: () => (
-    <FieldSet className="w-full max-w-sm">
+    <FieldSet className="w-[350px]">
       <FieldLegend>Account Information</FieldLegend>
       <Field>
         <FieldLabel>Username</FieldLabel>
@@ -106,12 +93,9 @@ export const FieldSetExample: Story = {
   ),
 };
 
-/**
- * Field with checkbox.
- */
 export const WithCheckbox: Story = {
   render: () => (
-    <FieldGroup className="w-full max-w-sm">
+    <FieldGroup className="w-[350px]">
       <Field>
         <FieldLabel>
           <Checkbox />
@@ -125,12 +109,9 @@ export const WithCheckbox: Story = {
   ),
 };
 
-/**
- * Field with radio group.
- */
 export const WithRadioGroup: Story = {
   render: () => (
-    <FieldGroup className="w-full max-w-sm">
+    <FieldGroup className="w-[350px]">
       <Field>
         <FieldLabel>Notification Preference</FieldLabel>
         <FieldContent>
@@ -148,28 +129,6 @@ export const WithRadioGroup: Story = {
               <Label htmlFor="none">None</Label>
             </div>
           </RadioGroup>
-          <FieldDescription>
-            Choose how you want to receive notifications.
-          </FieldDescription>
-        </FieldContent>
-      </Field>
-    </FieldGroup>
-  ),
-};
-
-/**
- * Responsive field orientation.
- */
-export const Responsive: Story = {
-  render: () => (
-    <FieldGroup className="w-full max-w-sm">
-      <Field orientation="responsive">
-        <FieldLabel>Email</FieldLabel>
-        <FieldContent>
-          <Input type="email" placeholder="john@example.com" />
-          <FieldDescription>
-            This field stacks vertically on mobile and horizontally on desktop.
-          </FieldDescription>
         </FieldContent>
       </Field>
     </FieldGroup>
