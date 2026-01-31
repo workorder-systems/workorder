@@ -16,7 +16,7 @@ import {
   ListChecksIcon,
   ListIcon,
   Presentation,
-  TextInitialIcon,
+  Type,
 } from "lucide-react";
 import type * as React from "react";
 import type {
@@ -272,7 +272,7 @@ export function getColumnVariant(variant?: CellOpts["variant"]): {
     case "short-text":
       return { label: "Short text", icon: BaselineIcon };
     case "long-text":
-      return { label: "Long text", icon: TextInitialIcon };
+      return { label: "Long text", icon: Type };
     case "number":
       return { label: "Number", icon: HashIcon };
     case "url":
