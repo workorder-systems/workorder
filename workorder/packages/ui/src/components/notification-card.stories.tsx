@@ -10,7 +10,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A notification card component with support for different statuses, actions, and timestamps. Based on GAIA EnhancedNotificationCard design patterns.',
+          'A notification card component with support for different statuses, actions, and timestamps.',
       },
     },
   },
